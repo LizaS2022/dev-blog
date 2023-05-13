@@ -12,7 +12,7 @@ const formSubmission = async (e) => {
     const passwordValue = document.getElementById("passwordInput").value;
     console.log(passwordValue);
 
-    const postValue = await fetch('/users/signup', {
+    const postValue = await fetch('/users/sign-up', {
         method: 'POST',
         body:JSON.stringify({
             username: userValue,
