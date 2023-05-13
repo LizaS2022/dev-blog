@@ -22,10 +22,11 @@ const formSubmission = async (e) => {
         headers: { 'content-type': 'application/json' },
     })
     if(postValue.ok) {
-        alert('You signed up successfully');
-}
+        alert('You signed up successfully')
+    }
     else {
-        alert('something went wrong');
+        alert('something went wrong')
+}
 };
 
 
