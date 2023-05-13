@@ -6,6 +6,13 @@ const PORT = process.env.PORT || 3002;
 const app = express();
 const models = require("./models");
 
+
+// this is needed to do post requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
+
 // connective tussie between the api and the server
 app.use(controllers);
 
