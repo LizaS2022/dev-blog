@@ -24,9 +24,9 @@ const formSubmission = async (e) => {
     if(postValue.ok) {
         alert('You signed up successfully');
 }
-else {
-    alert('something went wrong');
-}
+    else {
+        alert('something went wrong');
+};
 
 
 
