@@ -1,10 +1,15 @@
 const express =require("express");
+const session = require('express-session');
+const exphbs = require("express-handlebars");
 const controllers = require("./controllers");
 // requiring the file
+
 const sequelize = require("./config/connection");
-const exphbs = require("express-handlebars");
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+
 // we need to deploy to the server so that it binds to the nearest available port number
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3008;
 const app = express();
 const models = require("./models");
 
@@ -14,6 +19,23 @@ app.use(express.static("public"));
 
 // we need the next three lines to use handlebars
 const hbs = exphbs.create({});
+
+const sess = {
+    secret: 'Super secret secret',
+    cookie: {
+      maxAge: 300000,
+      httpOnly: true,
+      secure: false,
+      sameSite: 'strict',
+    },
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+      db: sequelize
+    })
+  };
+  
+  app.use(session(sess));
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
