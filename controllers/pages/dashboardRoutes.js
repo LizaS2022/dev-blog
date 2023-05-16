@@ -13,7 +13,7 @@ const {Post} = require("../../models");
 // const actualUserData = userData.get({plain: true });
 // console.log(actualUserData);
 // res.render("dashboard",actualUserData);
-// })
+// }) 
 
 
 module.exports = router;
