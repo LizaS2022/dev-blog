@@ -1,22 +1,27 @@
-<section class="container row">
-    <div class="col-3">
-        <p class="text-center">
-            Username
-        </p>
-        <p>{{username}}</p>
 
+
+
+<main class="container">
+
+<div class="row mt-4">
+  {{#if items.length}}
+  <div class="col-md-6 blog-list">
+    {{#each items as |item|}}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{item.title}}<span id ="createdOn">{{item.date_created}}</span></h5>
+            <p class="card-text">{{item.description}}</p>
+        </div>
     </div>
-    <div class="col-3">
-        <p class="text-center">
-            email
-        </p>
-        <p>{{email}}</p>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+</main> 
 
-    </div>
-
-
+<script src="./js/dashboard.js"></script>
 
 
 
 
-</section>
+
