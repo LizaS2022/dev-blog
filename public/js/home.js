@@ -12,10 +12,6 @@ console.log(userForm);
         const titleValue = document.getElementById("post-name").value;
         console.log(titleValue);
         const descriptionValue = document.getElementById("post-desc").value;
-        console.log(descriptionValue);
-
-        console.log("this is the session id");
-        console.log(session.user_id);
 
         if (titleValue && descriptionValue) {
             console.log("I am in the if statment of the post")

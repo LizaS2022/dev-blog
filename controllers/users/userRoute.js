@@ -3,6 +3,21 @@ const { emitWarning } = require("process");
 const {User} = require("../../models");
 
 
+
+router.get("/login", (req, res) => {
+  console.log(" go to login");
+  
+  if (req.session.logged_in ) {
+  return res.redirect('/home');
+ 
+  }
+  res.render("login", {
+      title : 'Login',
+      title2: "Sign-Up",
+  });
+});
+
+
 // localhost3002/user
 router.post("/sign-up", async (req, res)=> {
 
@@ -25,21 +40,17 @@ router.post("/sign-up", async (req, res)=> {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      res.json({ user: userData, message: 'You are now logged in!' });
+      res.status(200).redirect('/home');
+      return;
     });
+
+   
     console.log("finished assign")
-    res.redirect('/home');
-    return;
+  
   }
  catch (err) {
   res.status(400).json(err);
 }
-
-    // const userdataDisplay = userData.map((user) => 
-    //     user.get({plain:true}));
-    //     res.render("login", {userdataDisplay});
-
-    // res.json(userData);
     
 });
 
@@ -67,17 +78,17 @@ router.post('/login', async (req, res) => {
           .json({ message: 'Incorrect email or password, please try again' });
         return;
       }
+
       console.log("in the login post 3");
       req.session.save(() => {
         req.session.user_id = userData.id;
         req.session.logged_in = true;
+        res.status(200).redirect('/home');
+        return;
       });
       console.log("in the login post 4");
       // const userdataDisplay = userData.map((user) => 
       //   user.get({plain:true}));
-
-        res.redirect("/home");
-        return;
     } catch (err) {
       res.status(400).json(err);
     }

@@ -9,7 +9,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
 // we need to deploy to the server so that it binds to the nearest available port number
-const PORT = process.env.PORT || 3008;
+const PORT = process.env.PORT || 3009;
 const app = express();
 const models = require("./models");
 
