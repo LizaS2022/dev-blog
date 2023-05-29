@@ -49,7 +49,6 @@ router.post('/dashboard', async (req, res) => {
     });
 
 router.delete('/dashboard/:id', async (req, res) => {
-    console.log("im in")
     if (!req.session.logged_in){
         return res.status(401).json({message: "user not logged in"});
     }
@@ -75,15 +74,10 @@ router.delete('/dashboard/:id', async (req, res) => {
 
 
 router.put('/dashboard/:id',async (req, res) => {
-    console.log("the req parmas id is " + req.params.id);
-    console.log("the req parmas user_id " + req.session.user_id);
-    console.log(req.body);
-    console.log("edit put request")
     if (!req.session.logged_in){
         return res.status(401).json({message: "user not logged in"});
     }
-    
-    console.log(req.session.user_id);
+
 try {
     const updatedPost = await Post.update (
 
@@ -99,7 +93,7 @@ try {
            
     }
     );
-    console.log("the updated post is:" + updatedPost);
+
     if (!updatedPost) {
         return res.status(404).json("post not found");
     }

@@ -21,16 +21,12 @@ const formSubmission = async (event) => {
         headers: { 'content-type': 'application/json' },
     });
 
-    console.log(postValue);
 
     if(postValue.ok) {
         alert('You signed up successfully')
         location.href="/dashboard";
     }
     
-    // else if (postValue.ok && postValue.message == 'logged in is required'){
-    //     location.href="/login";
-    // }
 
     else {
         alert('something went wrong');
@@ -51,7 +47,6 @@ const switchTitle = async (e) => {
     const titleEl = document.getElementById("title");
     const title2El = document.getElementById("title2");
     const submitEl = document.getElementById("submitBtn");
-    console.log("does it call switch title?");
 
     if (titleEl.innerText === "Login") {
         titleEl.innerText = "Sign-Up";

@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
             attributes: ["username"],
         }).value
 
-        console.log(username);
+
 
         var postDataAll = [];
         postData.forEach(post => {
@@ -73,9 +73,7 @@ router.post('/', async (req, res) => {
     });
 
     router.post('/comments/save',async (req, res) => {
-        console.log("im in" )
-        console.log(req.body);
-        console.log("add comment put request")
+        
         if (!req.session.logged_in){
             return res.status(401).json({message: "user not logged in"});
         }

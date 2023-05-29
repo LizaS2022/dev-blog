@@ -8,9 +8,6 @@ const editPost = async (event) => {
     const description = event.srcElement[1].value;
     
     const id = event.submitter.dataset.id;
-    console.log("tht edited id is:" + id)
-    console.log(title)
-    console.log(description)
     const response =  await fetch(`/dashboard/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
@@ -34,7 +31,6 @@ catch (error) {
 
 
 const editThisPost = document.getElementsByClassName('edit-post-form');
-console.log(editThisPost);
 for (let i = 0; i < editThisPost.length; i++) {
     editThisPost[i].addEventListener("submit", editPost)
 }

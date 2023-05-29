@@ -1,10 +1,10 @@
 const replyMessage = async (event) => {
+    
     try {
     event.preventDefault();
     const comment_text = event.srcElement[0].value;
     const post_id = event.target.getAttribute("data-post-id");
-    console.log("the comment text is:"+ comment_text);
-    console.log("the post id is:" + post_id);
+
     
     const response =  await fetch(`/comments/save`, {
         method: 'POST',
@@ -33,7 +33,7 @@ catch (error) {
 
 
 const commentThisPost = document.getElementsByClassName('reply-form');
-console.log(commentThisPost);
+
 for (let i = 0; i < commentThisPost.length; i++) {
     commentThisPost[i].addEventListener("submit", replyMessage)
 }
@@ -45,6 +45,5 @@ for (let i = 0; i < displyReplyBox.length; i++) {
     displyReplyBox[i].addEventListener("click", function(){
         commentThisPost[i].classList.toggle("display_box");
         displyReplyBox[i].classList.toggle("display_none");
-        console.log("display reply box" + displyReplyBox);
     })
 }

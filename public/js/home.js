@@ -14,7 +14,6 @@
     
        
         if (titleValue && descriptionValue) {
-           console.log("I am in the if statment of the post")
        const postValue = await fetch('/dashboard', {
            method: 'POST',
            body:JSON.stringify({
