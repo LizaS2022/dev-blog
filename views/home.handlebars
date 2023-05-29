@@ -1,40 +1,45 @@
 
- 
+
+
 <main class="container">
 
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Post:</h3>
 
-    <form class="form new-post-form">
-      <div class="form-group">
-        <label for="post-name">Title:</label>
-        <input class="form-input" type="text" id="post-name" name="post-name" />
-      </div>
-      <div class="form-group">
-        <label for="post-desc">description:</label>
-        <textarea class="form-input" id="post-desc" name="post-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button id="addPost" type="submit" class="btn btn-primary">Add Post +</button>
-      </div>
-    </form>
-  </div>
+  {{#if postsAndComments.length}}
+ 
+    {{#each postsAndComments as |postAndComments|}}
+    <div class="card text-bg-secondary mb-3 col-8">
+        <div class="card-header">
+            <h5 class="card-header title">{{postAndComments.title}}<span class="float-end date" id ="createdOn"> posted by {{user}} {{format_date postAndComments.date_created}}</span></h5>
+        </div> 
+        <div class="card-body">
+          <p class="card-body description">{{postAndComments.description}}</p>
+        </div>
 
-  {{#if items.length}}
-  <div class="col-md-6 blog-list">
-    {{#each items as |item|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h3><a href="/post/{{item.id}}">{{item.title}}</a></h3>
-        <p>{{item.description}}</p>
-      </div>
+        {{#each postAndComments.comments as |comment|}}
+    <p>{{comment.comment_text}}</p>
+    <span>Posted by {{comment.user_id}} on {{format_date comment.date_created}}</span>
+        {{/each}}
+
+        <form class="display_none reply-form card-footer" data-post-id="{{postAndComments.post_id}}">
+            <textarea class="card-reply-footer reply" id="reply_{{postAndComments.post_id}}" name="reply">{{postAndComments.reply}}</textarea>
+             <button id="reply_btn_{{postAndComments.post_id}}" type="submit" class="post-the-reply btn btn-primary">Reply</button>
+        </form>
+        <div>
+          <button class="show-reply-box btn btn-primary" >Reply</button>
+          </div>
+        
     </div>
+   
     {{/each}}
-  </div>
   {{/if}}
-</div>
+
 </main> 
 
+
+
 <script src="./js/home.js"></script>
+<script src="./js/replyToPost.js"></script>
+
+
+
 

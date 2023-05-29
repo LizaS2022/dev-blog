@@ -1,4 +1,30 @@
 body {
     background-color: #B3C890;
     color:#5C4033;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.date {
+    font-size: 12px;
+}
+
+.title {
+    font-size: 22px;
+}
+
+.display_none {
+    display: none;
+}
+
+.display_noComment {
+    display: none;
+}
+
+
+.display_edit {
+    display:none;
+}
+.display_box {
+    display: block;
 }

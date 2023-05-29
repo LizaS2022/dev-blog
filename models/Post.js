@@ -7,7 +7,7 @@ class Post extends Model {};
 
     Post.init({
         // title.content,creator_username, created_on
-        id: {
+        post_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -31,7 +31,7 @@ class Post extends Model {};
         },
         user_id: {
             type: DataTypes.INTEGER,
-            reference: {
+            references: {
                 model: 'user',
                 key:'id',
             }

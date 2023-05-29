@@ -1,6 +1,6 @@
 
-
 const userForm = document.getElementById("userForm");
+
 
 const formSubmission = async (event) => {
     event.preventDefault();
@@ -20,19 +20,25 @@ const formSubmission = async (event) => {
         }),
         headers: { 'content-type': 'application/json' },
     });
+
+    console.log(postValue);
+
     if(postValue.ok) {
         alert('You signed up successfully')
-        
+        location.href="/dashboard";
     }
+    
+    // else if (postValue.ok && postValue.message == 'logged in is required'){
+    //     location.href="/login";
+    // }
+
     else {
-        console.log(postValue)
-        alert('something went wrong')
+        alert('something went wrong');
 
 }
-
 }};
 
-
+console.log(userForm);
 
 userForm.addEventListener("submit", formSubmission);
 

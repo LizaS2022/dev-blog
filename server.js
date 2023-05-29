@@ -1,4 +1,6 @@
+const path = require('path');
 const express =require("express");
+const bodyParser = require("body-parser");
 const session = require('express-session');
 const exphbs = require("express-handlebars");
 const controllers = require("./controllers");
@@ -6,10 +8,10 @@ const controllers = require("./controllers");
 
 const sequelize = require("./config/connection");
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
+const helpers = require('./utils/helpers');
 
 // we need to deploy to the server so that it binds to the nearest available port number
-const PORT = process.env.PORT || 3009;
+const PORT = process.env.PORT || 3094;
 const app = express();
 const models = require("./models");
 
@@ -18,7 +20,7 @@ const models = require("./models");
 app.use(express.static("public"));
 
 // we need the next three lines to use handlebars
-const hbs = exphbs.create({});
+const hbs = exphbs.create({helpers});
 
 const sess = {
     secret: 'Super secret secret',
@@ -44,8 +46,7 @@ app.set("view engine", "handlebars");
 // this is needed to do post requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
+app.use(express.static(path.join(__dirname,'public')));
 
 // connective tussie between the api and the server
 app.use(controllers);
